@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h2 Registro de usuario
+
+  form(action="/auth/register" method="POST" enctype="multipart/form-data")
+    .mb-2
+      label Nombre
+      input.form-control(type="text" name="nombre" required)
+    .mb-2
+      label Apellido
+      input.form-control(type="text" name="apellido" required)
+    .mb-2
+      label Email
+      input.form-control(type="email" name="email" required)
+    .mb-2
+      label Contraseña
+      input.form-control(type="password" name="password" required)
+    .mb-2
+      label Imagen de perfil
+      input.form-control(type="file" name="imagen_perfil")
+    .mb-2
+      label Intereses (opcional)
+      textarea.form-control(name="intereses")
+    .mb-2
+      label Antecedentes (opcional)
+      textarea.form-control(name="antecedentes")
+    button.btn.btn-success.mt-3(type="submit") Registrarse
+  a.btn.btn-secondary.mt-3.ms-2(href="/") Volver al inicio

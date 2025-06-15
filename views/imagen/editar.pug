@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  h2 Editar Imagen
+
+  form(action=`/imagen/editar/${imagen.id_imagen}` method="POST")
+    .mb-3
+      label(for="titulo") Título
+      input.form-control(type="text", name="titulo", id="titulo", required, value=imagen.titulo)
+
+    .mb-3
+      label(for="descripcion") Descripción
+      textarea.form-control(name="descripcion", id="descripcion")= imagen.descripcion
+
+    .form-check.mb-3
+      input.form-check-input(
+        type="checkbox",
+        name="compartida",
+        id="compartidaCheck",
+        value="1",
+        checked=imagen.compartida === 1
+      )
+      label.form-check-label(for="compartidaCheck") Compartir con amigos
+
+    button.btn.btn-success(type="submit") Guardar cambios
+    a.btn.btn-secondary.ms-2(href="/imagen/mis-publicaciones") Cancelar

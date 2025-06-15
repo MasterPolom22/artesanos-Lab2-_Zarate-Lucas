@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h2 #{imagen.titulo}
+
+  .card.mb-3(style="max-width: 700px")
+    img.card-img-top(src=imagen.url)
+    .card-body
+      p.text-muted= imagen.descripcion || 'Sin descripción'
+
+  hr
+  h4 Comentarios
+
+  if comentarios.length
+    each c in comentarios
+      .mb-2
+        b #{c.nombre} #{c.apellido}:
+        |  #{c.texto}
+        br
+        small.text-muted= new Date(c.fecha).toLocaleString()
+  else
+    p.text-muted No hay comentarios aún.
+
+  form(method="POST", action=`/imagen/publicacion/${imagen.id_imagen}/comentar`)
+    .mb-3
+      textarea.form-control(name="texto" required placeholder="Dejá tu comentario...")
+    button.btn.btn-success.mt-2(type="submit") Comentar
+
+  a.btn.btn-secondary.mt-3(href="/imagen/mis-publicaciones") Volver

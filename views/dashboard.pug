@@ -1,0 +1,8 @@
+// localite: dashboard.pug
+extends layout
+
+block content
+  h2 Hola #{usuario.nombre} 👋
+  img(src=usuario.imagen width="100") 
+  p Bienvenido al panel de control.
+  a(href="/logout") Cerrar sesión

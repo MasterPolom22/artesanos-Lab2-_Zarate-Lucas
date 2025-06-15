@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  h2 Perfil de #{usuario.nombre}
+
+  .card.mb-3(style="max-width: 600px")
+    .row.g-0
+      .col-md-4
+        if usuario.imagen_perfil
+          img(src=usuario.imagen_perfil, class="img-fluid rounded-start")
+        else
+          img(src="/img/default-user.png", class="img-fluid rounded-start")
+      .col-md-8
+        .card-body
+          h5.card-title #{usuario.nombre} #{usuario.apellido}
+          if usuario.intereses
+            p.card-text
+              b Intereses:
+              | #{usuario.intereses}
+          if usuario.antecedentes
+            p.card-text
+              b Antecedentes:
+              | #{usuario.antecedentes}
+          p.card-text
+            small.text-muted Miembro desde #{usuario.fecha_registro.toLocaleDateString()}
+          a.btn.btn-secondary.mt-2(href="/amistad/amigos") Volver a mis amigos

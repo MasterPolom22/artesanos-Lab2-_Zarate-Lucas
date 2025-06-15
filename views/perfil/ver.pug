@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  h2 Mi Perfil
+
+  .card.mb-3(style="max-width: 600px")
+    .row.g-0
+      .col-md-4
+        if usuario.imagen_perfil
+          img(src=usuario.imagen_perfil, class="img-fluid rounded-start")
+        else
+          img(src="/img/default-user.png", class="img-fluid rounded-start")
+      .col-md-8
+        .card-body
+          h5.card-title #{usuario.nombre} #{usuario.apellido}
+          p.card-text
+            b Email:
+            | #{usuario.email}
+          if usuario.intereses
+            p.card-text
+              b Intereses:
+              | #{usuario.intereses}
+          if usuario.antecedentes
+            p.card-text
+              b Antecedentes:
+              | #{usuario.antecedentes}
+          p.card-text
+            small.text-muted Registrado el #{usuario.fecha_registro.toLocaleDateString()}
+          a.btn.btn-warning.mt-2(href="/perfil/editar") Editar perfil
+          br
+          a.btn.btn-outline-primary.mt-2(href="/album/mis-albumes") Explorar mis álbumes
+          a.btn.btn-secondary.mt-2.ms-2(href="/") Volver al inicio

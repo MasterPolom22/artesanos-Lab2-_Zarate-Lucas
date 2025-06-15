@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css")
+  body
+    if session && session.usuario
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4
+        .container-fluid
+          a.navbar-brand(href="/perfil") Artesanos.com
+          button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav")
+            span.navbar-toggler-icon
+          #navbarNav.collapse.navbar-collapse
+            ul.navbar-nav.me-auto.mb-2.mb-lg-0
+              li.nav-item
+                a.nav-link(href="/perfil") 👤 Mi perfil
+              li.nav-item
+                a.nav-link(href="/album/mis-albumes") 🖼️ Mis álbumes
+              li.nav-item
+                a.nav-link(href="/imagen/mis-publicaciones") 📝 Mis publicaciones
+              li.nav-item
+                a.nav-link(href="/album/mis-imagenes") ➕ Mis imagen              
+              li.nav-item
+                a.nav-link(href="/imagen/compartidas") 🌍 Imágenes compartidas
+              li.nav-item
+                a.nav-link(href="/amistad/usuarios") 👥 Buscar usuarios
+              li.nav-item
+                a.nav-link(href="/amistad/solicitudes") 📬 Solicitudes
+              li.nav-item
+                a.nav-link(href="/amistad/amigos") ✅ Amigos
+              li.nav-item
+                a.nav-link(href="/auth/logout") 🚪 Cerrar sesión
+    .container
+      if success_msg
+        .alert.alert-success= success_msg
+      if error_msg
+        .alert.alert-danger= error_msg
+      if notificaciones && notificaciones.length
+        each nota in notificaciones
+          .alert.alert-info= nota.mensaje
+      block content
+
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js")

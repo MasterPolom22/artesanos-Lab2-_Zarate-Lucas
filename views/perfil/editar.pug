@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  h2 Editar Perfil
+
+  form(action="/perfil/editar" method="POST" enctype="multipart/form-data")
+    .mb-2
+      label Nombre
+      input.form-control(type="text" name="nombre" required value=usuario.nombre)
+    .mb-2
+      label Apellido
+      input.form-control(type="text" name="apellido" required value=usuario.apellido)
+    .mb-2
+      label Email
+      input.form-control(type="email" name="email" required value=usuario.email)
+    .mb-2
+      label Intereses
+      textarea.form-control(name="intereses")= usuario.intereses
+    .mb-2
+      label Antecedentes
+      textarea.form-control(name="antecedentes")= usuario.antecedentes
+    .mb-2
+      label Imagen de perfil
+      input.form-control(type="file" name="imagen_perfil")
+    button.btn.btn-success.mt-3(type="submit") Guardar cambios

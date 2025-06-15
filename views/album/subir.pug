@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  h2 Subir imagen a un álbum
+
+  form(action="/album/subir" method="POST" enctype="multipart/form-data")
+    .mb-2
+      label Álbum
+      select.form-control(name="id_album" required)
+        each album in albums
+          option(value=album.id_album)= album.titulo
+
+    .mb-2
+      label Título
+      input.form-control(type="text" name="titulo" required)
+
+    .mb-2
+      label Descripción
+      textarea.form-control(name="descripcion")
+
+    .mb-2
+      label Imagen
+      input.form-control(type="file" name="imagen" required)
+
+    .form-check.mb-3
+      input.form-check-input(type="checkbox" name="compartida" value="1" id="compartidaCheck")
+      label.form-check-label(for="compartidaCheck") Compartir con amigos
+
+    button.btn.btn-success(type="submit") Subir imagen

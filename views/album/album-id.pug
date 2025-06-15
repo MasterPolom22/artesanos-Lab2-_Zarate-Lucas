@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  h2 Álbum: #{album.titulo}
+  a.btn.btn-secondary.mb-3(href="/album/mis-albumes") Volver a mis álbumes
+
+  if imagenes.length
+    .row
+      each imagen in imagenes
+        .col-md-4.mb-3
+          .card
+            img.card-img-top(src=imagen.url)
+            .card-body
+              h5.card-title= imagen.titulo
+              p.card-text= imagen.descripcion
+              form(action=`/album/imagen/eliminar/${imagen.id_imagen}` method="POST")
+                button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Eliminar esta imagen?')") Eliminar
+  else
+    p.text-muted No hay imágenes en este álbum.

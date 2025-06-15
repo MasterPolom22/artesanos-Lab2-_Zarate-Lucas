@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  h2 Mis Publicaciones
+
+  // Botones de acción principales
+  .d-flex.mb-4
+    a.btn.btn-primary.me-2(href="/album/subir") ➕ Subir nueva imagen
+    a.btn.btn-secondary(href="/perfil") ⬅️ Volver al perfil
+
+  if imagenes.length
+    .row
+      each imagen in imagenes
+        .col-md-4.mb-4
+          .card.shadow-sm
+            img.card-img-top(src=imagen.url)
+            .card-body
+              h5.card-title= imagen.titulo
+              p.text-muted= imagen.descripcion || 'Sin descripción'
+
+              // Botones por publicación
+              .d-flex.justify-content-between.flex-wrap
+                a.btn.btn-outline-primary.btn-sm.mb-1(href=`/imagen/publicacion/${imagen.id_imagen}`) 💬 Ver y comentar
+                a.btn.btn-outline-warning.btn-sm.mb-1(href=`/imagen/editar/${imagen.id_imagen}`) 📝 Editar
+                form(action=`/imagen/eliminar/${imagen.id_imagen}` method="POST" class="d-inline")
+                  button.btn.btn-outline-danger.btn-sm.mb-1(type="submit" onclick="return confirm('¿Eliminar esta publicación?')") 🗑️ Eliminar
+  else
+    p.text-muted Aún no subiste imágenes.

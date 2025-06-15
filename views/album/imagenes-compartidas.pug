@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  h2 Imágenes compartidas por tus contactos
+
+  if imagenes.length
+    .row
+      each img in imagenes
+        .col-md-4.mb-3
+          .card
+            img.card-img-top(src=img.url)
+            .card-body
+              h5.card-title #{img.titulo}
+              p.card-text Subida por #{img.nombre} #{img.apellido}
+              a.btn.btn-primary(href=`/imagen/compartida/${img.id_imagen}`) Ver y comentar
+  else
+    p.text-muted No hay imágenes compartidas todavía.

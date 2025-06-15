@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h2 Buscar usuarios
+
+  if usuarios.length
+    table.table
+      thead
+        tr
+          th Nombre
+          th Email
+          th Acción
+      tbody
+        each user in usuarios
+          tr
+            td #{user.nombre} #{user.apellido}
+            td #{user.email}
+            td
+              form(action=`/amistad/enviar/${user.id_usuario}` method="POST")
+                button.btn.btn-sm.btn-primary(type="submit") Enviar solicitud
+  else
+    p.text-muted No hay otros usuarios para mostrar.

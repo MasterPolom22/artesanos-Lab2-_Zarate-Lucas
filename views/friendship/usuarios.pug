@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  h2 Buscar usuarios para agregar como amigos
+
+  if usuarios.length
+    table.table.table-striped
+      thead
+        tr
+          th Nombre
+          th Apellido
+          th Email
+          th Acción
+      tbody
+        each usuario in usuarios
+          tr
+            td= usuario.nombre
+            td= usuario.apellido
+            td= usuario.email
+            td
+              form(action=`/amistad/enviar/${usuario.id_usuario}` method="POST")
+                button.btn.btn-primary.btn-sm(type="submit") Enviar solicitud
+  else
+    p.text-muted No hay usuarios disponibles para enviar solicitud.

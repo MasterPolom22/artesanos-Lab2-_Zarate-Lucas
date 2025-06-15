@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  h2 Solicitudes de Amistad
+
+  if solicitudes.length
+    table.table
+      thead
+        tr
+          th Usuario
+          th Email
+          th Acción
+      tbody
+        each solicitud in solicitudes
+          tr
+            td #{solicitud.nombre} #{solicitud.apellido}
+            td #{solicitud.email}
+            td
+              form(action=`/amistad/aceptar/${solicitud.id_amistad}` method="POST" style="display:inline")
+                button.btn.btn-sm.btn-success(type="submit") Aceptar
+              form(action=`/amistad/rechazar/${solicitud.id_amistad}` method="POST" style="display:inline")
+                button.btn.btn-sm.btn-danger.ms-2(type="submit") Rechazar
+  else
+    p.text-muted No tenés solicitudes pendientes.

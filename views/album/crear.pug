@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h2 Crear un nuevo álbum
+
+  form(action="/album/crear" method="POST")
+    .mb-2
+      label Título del álbum
+      input.form-control(type="text" name="titulo" required placeholder="Ej: Esculturas 2025")
+    button.btn.btn-primary.mt-2(type="submit") Crear álbum
+
+  a.btn.btn-outline-primary.mt-3(href="/album/subir") Volver a subir imagen
+  a.btn.btn-secondary.mt-3.ms-2(href="/perfil") Volver al perfil

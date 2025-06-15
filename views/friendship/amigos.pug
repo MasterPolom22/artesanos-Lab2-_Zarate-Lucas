@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h2 Mis Amigos
+
+  if amigos.length
+    ul.list-group
+      each amigo in amigos
+        li.list-group-item
+          b= amigo.nombre + " " + amigo.apellido
+          br
+          small.text-muted= amigo.email
+          br
+          a.btn.btn-sm.btn-outline-primary.mt-2(href=`/perfil/${amigo.id_usuario}`) Ver perfil
+          form(action=`/amistad/eliminar/${amigo.id_usuario}` method="POST" style="display:inline")
+            button.btn.btn-sm.btn-outline-danger.ms-2(type="submit" onclick="return confirm('¿Seguro que querés eliminar este amigo?')") Eliminar
+  else
+    p.text-muted No tenés amigos confirmados
